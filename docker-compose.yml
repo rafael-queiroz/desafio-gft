@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  postgresdb:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: demo_gft
+      POSTGRES_USER: gft
+      POSTGRES_PASSWORD: nE5kMc7JCGNqwDQM
+    ports:
+      - "5432:5432"
+    networks:
+      springboot-postgres-net:
+
+
+  api_service:
+    container_name: api_service
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresdb
+    networks:
+      springboot-postgres-net:
+
+networks:
+  springboot-postgres-net:

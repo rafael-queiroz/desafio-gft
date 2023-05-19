@@ -1,0 +1,35 @@
+server:
+  forward-headers-strategy: NATIVE
+
+spring:
+  application:
+    name: demo-api
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgresdb:5432/demo_gft
+    username: gft
+    password: nE5kMc7JCGNqwDQM
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        enable_lazy_load_no_trans: true
+        event:
+          merge:
+            entity_copy_observer: allow
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jackson:
+    time-zone: America/Sao_Paulo
+  main:
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+    #banner-mode: OFF
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
