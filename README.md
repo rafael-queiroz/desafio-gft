@@ -8,6 +8,30 @@
 
 O App lista users com nome, email endereço e habilidades. Também, é possível cadastrar users. Todo armazenamento é mantido em base de dados postgres mas em container e sem volumes, portanto, ao finalizar o App as informações são perdidas.
 
+Segue os curl's para o teste via postman
+
+- Create User
+
+  `curl --location 'http://localhost:8080/users' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "name": "ererer",
+  "email": "rafael.qp@hotmail.com",
+  "dateOfBirth": "1985-02-14",
+  "address": "Rua José Inaldo, 759, Praia do Imperador Guia de Pacobaíba, Magé - RJ",
+  "skills": ["teste", "teste 56", "teste 3"]
+  }'`
+
+
+- List users pageable
+
+  `curl --location 'http://localhost:8080/users?page=0&size=0&sort=description,asc'`
+
+
+- Find user by id
+
+  `curl --location 'http://localhost:8080/users/1'`
+
 ## ✔️ Técnicas e tecnologias utilizadas
 
 As tecnologias utilizadas pra isso são:
