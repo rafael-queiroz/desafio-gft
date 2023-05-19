@@ -21,15 +21,13 @@ spring:
         event:
           merge:
             entity_copy_observer: allow
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-  jackson:
-    time-zone: America/Sao_Paulo
-  main:
-    allow-circular-references: true
-    allow-bean-definition-overriding: true
-    #banner-mode: OFF
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile:
+        - dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo_gft

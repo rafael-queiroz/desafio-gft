@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-@Component
+
 public class ApiKeyRequestFilter extends GenericFilterBean {
 
     static final Logger LOG = LoggerFactory.getLogger(ApiKeyRequestFilter.class);

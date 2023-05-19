@@ -1,5 +1,6 @@
 package com.gft.demo.resource;
 
+import com.gft.demo.filter.ApiKeyRequestFilter;
 import com.gft.demo.repository.UserRepository;
 import com.gft.demo.service.UserService;
 import org.hamcrest.core.Is;
@@ -35,6 +36,9 @@ public class UserResourceTest {
     @MockBean
     UserService userService;
 
+    //@MockBean
+    //ApiKeyRequestFilter apiKeyRequestFilter;
+
     @Test
     public void whenUserControllerInjected_thenNotNull() throws Exception {
         assertThat(userResource).isNotNull();
@@ -49,7 +53,7 @@ public class UserResourceTest {
     }
 
 
-    @Test
+   @Test
     public void whenPostRequestToUsersAndValidUser_thenCorrectResponse() throws Exception {
         String user = "{\"name\": \"Rafael Queiroz\", " +
                 "\"email\" : \"rafael.qp@hotmail.com\", " +
@@ -58,9 +62,9 @@ public class UserResourceTest {
                 "\"skills\" : [\"teste\", \"teste 56\", \"teste 3\"]}";
         mockMvc.perform(MockMvcRequestBuilders.post("/users")
                         .content(user)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
+                .andExpect(MockMvcResultMatchers.content().contentType("application/json")).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
